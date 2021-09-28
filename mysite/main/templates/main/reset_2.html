@@ -1,0 +1,18 @@
+{% extends "main/base(2).html" %}
+
+{% block title %}
+Сброс пароля
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <p>{{ error }}</p>
+    <h2>Ответе на вопрос</h2>
+    <p>{{ ques }}</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>{{ form.answer }}</p>
+            <input type="submit" value="Отправить" class="button">
+        </form>
+</div>
+{% endblock %}

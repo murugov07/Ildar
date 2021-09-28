@@ -1,0 +1,30 @@
+{% extends "main/base(2).html" %}
+
+{% block title %}
+Вход
+{% endblock %}
+
+{% block content %}
+<div class="content">
+{% if form.errors %}
+  <p>Неправильный пароль или имя пользователя</p>
+  {% endif %}
+  {% if user.is_authenticated %}
+  <p>Вы уже зарегестрированны.</p>
+  {% else %}
+  <h2>Вход</h2>
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <p>Имя</p>
+    {{ form.username }}
+    <br>
+    <p>Пароль</p>
+    {{ form.password }}
+    <br></br>
+    <input type="submit" value="Вход" class="button"/>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+  <p><a href="{% url 'reset' %}">Забыли пароль?</a></p>
+  {% endif %}
+</div>
+{% endblock %}

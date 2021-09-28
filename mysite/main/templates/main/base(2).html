@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}|AuroraAssistance</title>
+    <link href="{% static 'main/main.css' %}" rel="stylesheet" type="text/css">
+    <link rel="icon" href="{% static 'main/favicon.ico' %}">
+    <style>
+        body {
+        background: url({% static 'main/fon.jpeg' %});
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: 100%;
+        position: fixed;
+        }
+    </style>
+</head>
+<body>
+<ul>
+  <li><a href="{% url 'home' %}" id="name">AURORA</a></li>
+  <li><a class="pointer-left" id="contact" href="{% url 'support' %}">Написать нам</a></li>
+    {% if user.is_authenticated %}
+    <li><a class="pointer-left" id="about" href="{% url 'about' %}">О нас</a></li>
+    <li><a class="pointer-left" href="{% url 'profile' %}" id="profile">Профиль</a></li>
+    {% else %}
+    <li><a class="pointer-left" id="registration" href="{% url 'registration' %}">Регистрация</a></li>
+    {% endif %}
+    <li><a href="#" class="pointer-right" id="lang">English</a></li>
+    <li><img src="{% static 'main/user.jpg' %}" id="login-img" width="40" height="40"></li>
+    {% if user.is_authenticated %}
+    <li><a href="{% url 'logout'%}?next={% url 'home' %}" class="pointer-right" id="logout">Выйти</a></li>
+    {% else %}
+    <li><a class="pointer-right" href="{% url 'login'%}" id="login">Вход</a></li>
+    {% endif %}
+</ul>
+{% block content %}{% endblock %}
+</body>
+</html>

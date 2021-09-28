@@ -1,0 +1,22 @@
+{% extends "main/base(2).html" %}
+
+{% block title %}
+Регестрация
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="content">
+    <h1>Регистрация</h1>
+        <form action="" method="post">
+        {% csrf_token %}
+            <p><label>Имя:</label>{{ form.name }}</p>
+            <p><label>Пароль:</label>{{ form.password }}</p>
+            <p><label>Почта:</label>{{ form.mail }}</p>
+            <p><label>Введите секретный вопрос:</label>{{ form.question }}</p>
+            <p><label>Введите ответ:</label>{{ form.answer }}</p>
+            <input type="submit" value="Зарегистрироваться" class="button">
+        </form>
+    <br></br>
+</div>
+{% endblock %}
